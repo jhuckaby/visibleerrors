@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>global HTML page</title>
+<script type="text/javascript">
+ 
+function respondToMessage(event) {
+    if (event.name === "get_prefs") {
+		event.target.page.dispatchMessage("prefs", { hostlist: safari.extension.settings.hostlist } );
+	}
+}
+ 
+    safari.application.addEventListener("message", respondToMessage, false);
+</script>
+</head>
+<body>
+</body>
+</html>

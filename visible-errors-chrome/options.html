@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Visible Errors</title>
+<style>
+  /* Clone the look and feel of "chrome://" pages. */
+  body {
+    margin: 10px;
+    font: 84% Arial, sans-serif
+  }
+
+  h1 { font-size: 156% }
+
+  h1 img {
+    margin: 1px 5px 0 1px;
+    vertical-align: middle
+  }
+
+  h2 {
+    border-top: 1px solid #9cc2ef;
+    background-color: #ebeff9;
+    padding: 3px 5px;
+    font-size: 100%
+  }
+</style>
+</head>
+<body>
+<h1>
+  <img src="img/icon_64.png" alt="Visible Errors">
+  Visible Errors Extension
+</h1>
+<h2>Options</h2>
+<form id="options">
+	<b>Activate Error Notification for these hostnames:</b><br/>
+	<input type="text" name="hostlist" size="80" value=""/><br/>
+	
+	<div style="color:#888; font-size:11px;">
+		Enter one or more comma-separated hostname match patterns ('*' is a wildcard), or leave blank to show errors on every site.<br/>
+		For example, to only show errors for local development and your own website, you could enter: <b>127.0.0.1, localhost, *.mydomain.com</b>
+	</div>
+	
+	<br/>
+	
+	<input type="button" id="fe_save" value="Save Changes"/><br/><br/>
+	<div id="results"></div>
+</form>
+</body>
+<script src="options.js"></script>
+</html>

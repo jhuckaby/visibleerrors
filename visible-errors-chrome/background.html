@@ -1,0 +1,27 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Visible Errors Background Page</title>
+	<meta name="generator" content="TextMate http://macromates.com/">
+	<meta name="author" content="Joseph Huckaby">
+	<!-- Date: 2011-12-27 -->
+</head>
+<body>
+
+	<script>
+		// allow content script access to user prefs for this extension
+		chrome.extension.onRequest.addListener(
+		  function(request, sender, sendResponse) {
+		    if (request.cmd == "get_prefs")
+		      sendResponse({
+				hostlist: localStorage.hostlist || ''
+			});
+		    else
+		      sendResponse({}); // snub them.
+		  });
+	</script>
+
+</body>
+</html>

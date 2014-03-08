@@ -1,0 +1,51 @@
+/* Styles for Visible Errors */
+
+.ve_reset_div {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	line-height: auto;
+	display: block;
+}
+
+#ve_growl_wrapper {
+	position: fixed !important;
+	left: 100% !important;
+	margin: 0px 0px 0px -310px !important;
+	top: 10px !important;
+	right: 0px !important;
+	bottom: 0px !important;
+	padding: 0px !important;
+	width: 300px !important;
+	height: auto !important;
+	z-index: 99999 !important;
+}
+
+/* Message Box */
+div.ve_growl_message {
+	background: rgba(64, 64, 64, 0.80) !important;
+	position: relative !important;
+	overflow: hidden !important;
+	border-style: solid !important;
+	border-width: 1px !important;
+	margin: 5px 10px 0px 10px !important;
+	padding: 0px !important;
+	border-radius: 8px !important;
+	box-shadow: rgba(0,0,0,0.2) 5px 5px 8px !important;
+	cursor: pointer !important;
+}
+
+div.ve_growl_message_inner {
+	font-family: helvetica, sans-serif !important;
+	font-size: 12px !important; 
+	font-weight: normal !important;
+	margin: 0 !important;
+	padding: 8px 10px 8px 10px !important;
+	cursor: pointer !important;
+	text-shadow:0 1px 0 rgba(0, 0, 0, 1) !important;
+}
+
+div.ve_growl_message.error   { color:#fff !important; border-color:transparent !important; }
