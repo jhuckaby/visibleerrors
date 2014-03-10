@@ -37,10 +37,10 @@
 		return -1;
 	};
 	
+	var __next_id = 1;
 	var get_unique_id = function() {
 		// simple id counter
-		if (this.__next_id) this.__next_id = 1;
-		return this.__next_id++;
+		return __next_id++;
 	};
 	
 	var hires_time_now = function() {
@@ -70,6 +70,13 @@
 			if (this.growls.length >= 10) return; // spin control
 			if (!check_host()) return; // bad host
 			
+			var body = document.getElementsByTagName('body')[0];
+			if (!body) {
+				// oops, fired too soon?  we have no choice but to abort
+				console.log("Warning: Visible Errors caught the error, but could not find the BODY element to display an alert.");
+				return;
+			}
+			
 			var container = document.getElementById('ve_growl_wrapper');
 			if (!container) {
 				// first growl, create container
@@ -83,13 +90,10 @@
 				growl_top.style.height = '0px';
 				container.appendChild(growl_top);
 				
-				var body = document.getElementsByTagName('body')[0];
-				if (!body) {
-					// oops, fired too soon?  we have no choice but to abort
-					console.log("Warning: Visible Errors caught the error, but could not find the BODY element to display an alert.");
-					return;
-				}
 				body.appendChild(container);
+			}
+			else {
+				container.style.display = 'block';
 			}
 			
 			var div = document.createElement('div');
@@ -98,7 +102,7 @@
 			div.innerHTML = '<div class="ve_reset_div ve_growl_message_inner">' + msg + '</div>';
 			container.insertBefore( div, document.getElementById('ve_growl_top').nextSibling );
 			
-			var growl = { id:get_unique_id(), type: type, msg: msg, opacity:0.0, start:hires_time_now(), div:div };
+			var growl = { id:get_unique_id(), type: type, msg: msg, opacity:0.0, start:hires_time_now() };
 			
 			this.growls.push(growl);
 			
@@ -107,7 +111,11 @@
 			setTimeout( function() {
 				if (!growl.deleted) {
 					delete_object(self.growls, { id: growl.id });
-					document.getElementById('ve_growl_wrapper').removeChild( div );
+					container.removeChild( div );
+					if (!self.growls.length) {
+						container.style.display = 'none';
+						body.removeChild(container);
+					}
 					growl.deleted = 1;
 				}
 			}, this.lifetime * 1000 );
@@ -115,7 +123,11 @@
 			div.onclick = function() {
 				if (!growl.deleted) {
 					delete_object(self.growls, { id: growl.id });
-					document.getElementById('ve_growl_wrapper').removeChild( div );
+					container.removeChild( div );
+					if (!self.growls.length) {
+						container.style.display = 'none';
+						body.removeChild(container);
+					}
 					growl.deleted = 1;
 				}
 			};

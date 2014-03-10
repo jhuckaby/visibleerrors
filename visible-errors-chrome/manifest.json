@@ -3,7 +3,7 @@
 	"name": "Visible Errors",
 	"short_name": "Visible Errors",
 	"description": "Show a notification for all JavaScript errors.",
-	"version": "1.0.0",
+	"version": "1.0.1",
 
 	"incognito" : "spanning",
 
